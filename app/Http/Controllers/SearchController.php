@@ -20,17 +20,10 @@ class SearchController extends Controller{
         if ($validator->fails()) {
         	$err = "Ошибка, не все поля заполнены корректно!";  
         }else{  
-			if($request->ajax()){
-
-		        $validator = Validator::make($request->all(), [
-		            'searchvalue' => 'required'
-		        ]);
-		        if (!$validator->fails()) { 
-		            $database = new Search(); 
-
+			if($request->ajax()){ 
+		            $database = new Search();  
 		            $database->searchvalue = $request->searchvalue;   
-		            $database->save();
-		        } 
+		            $database->save();		   
 
 					$curl = curl_init(); 
 	 				$searchvalue= $request->input('searchvalue'); 
